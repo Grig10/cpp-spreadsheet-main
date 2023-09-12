@@ -13,7 +13,9 @@ class ParsingError : public std::runtime_error {
     using std::runtime_error::runtime_error;
 };
 
-using Func = std::function<double(const Position*)>;
+using FormulaEvaluator = std::function<double(Position*)>;
+
+
 
 class FormulaAST {
 public:
@@ -23,7 +25,7 @@ public:
     FormulaAST& operator=(FormulaAST&&) = default;
     ~FormulaAST();
 
-    double Execute(Func) const;
+    double Execute(FormulaEvaluator) const;
     void PrintCells(std::ostream& out) const;
     void Print(std::ostream& out) const;
     void PrintFormula(std::ostream& out) const;
